@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galleriet", "galleriet\galleriet.csproj", "{CB51E0D5-5948-4635-A5A8-E2B65F563547}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{3E851A5B-EFC8-4939-BBBE-9FE3C8616FFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{8C76981E-2C89-4C44-9F07-C4FD25DCE5C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Thumnails", "Thumnails", "{2FE16DE2-409A-48F6-8CDF-D4819F377FD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,5 +22,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8C76981E-2C89-4C44-9F07-C4FD25DCE5C2} = {3E851A5B-EFC8-4939-BBBE-9FE3C8616FFF}
+		{2FE16DE2-409A-48F6-8CDF-D4819F377FD2} = {3E851A5B-EFC8-4939-BBBE-9FE3C8616FFF}
 	EndGlobalSection
 EndGlobal
