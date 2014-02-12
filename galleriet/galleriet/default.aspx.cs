@@ -1,4 +1,5 @@
-﻿using System;
+﻿using galleriet.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,17 @@ namespace galleriet
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Browse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public IEnumerable<System.String> Repeater_GetData()
+        {
+             var gallery = new Gallery();
+             return gallery.GetImageNames();
         }
     }
 }

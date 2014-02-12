@@ -61,6 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="Files\Images\Chrysanthemum.jpg" />
+    <Content Include="Files\Images\Desert.jpg" />
+    <Content Include="Files\Images\Hydrangeas.jpg" />
+    <Content Include="Files\Images\Jellyfish.jpg" />
+    <Content Include="Files\Images\Koala.jpg" />
+    <Content Include="Files\Images\Lighthouse.jpg" />
+    <Content Include="Files\Images\Tulips.jpg" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
@@ -86,6 +93,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\Thumbnails\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

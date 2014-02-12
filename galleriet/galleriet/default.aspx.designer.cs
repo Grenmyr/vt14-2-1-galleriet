@@ -40,6 +40,15 @@ namespace galleriet {
         protected global::System.Web.UI.WebControls.Panel LoadedPanel;
         
         /// <summary>
+        /// Repeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater;
+        
+        /// <summary>
         /// ValidationSummary control.
         /// </summary>
         /// <remarks>
@@ -67,12 +76,12 @@ namespace galleriet {
         protected global::System.Web.UI.WebControls.Button Browse;
         
         /// <summary>
-        /// Upload control.
+        /// FileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Upload;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload;
     }
 }

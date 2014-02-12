@@ -36,32 +36,31 @@ namespace galleriet.Model
         {
             // Getting files from the path saving them into an array.
             var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
-            List<string> imagesList = new List<string>(50);
+            List<string> imagesAdressList = new List<string>(50);
 
             for (int i = 0; i < images.Length; i++)
             {
-                imagesList.Add(images[i].ToString());
+                imagesAdressList.Add(images[i].ToString());
             }
 
             // Using "Select" loop my list to match against Regexobject approved extensions.
-            imagesList.Select(imageName => ApprovedExtensions.IsMatch(imageName));
-            imagesList.TrimExcess();
-            imagesList.Sort();
+            imagesAdressList.Select(imageName => ApprovedExtensions.IsMatch(imageName));
+            imagesAdressList.TrimExcess();
+            imagesAdressList.Sort();
 
-            return imagesList.AsReadOnly();
+            return imagesAdressList.AsReadOnly();
 
         }
 
         public bool ImageExist(string name)
         {
-            // Returns true if my list contains that name.
-            return GetImageNames().Contains(name);
+           
+            //return GetImageNames().Contains(name);
+            return File.Exists(string.Format("{0}/{1}",PhysicalUploadedImagesPath, name));
         }
 
         private bool IsValidImage(Image image)
         {
-
-            //return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.ApprovedExtensions.Match(image).Guid;
             return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Gif.Guid ||
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid ||
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
