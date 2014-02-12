@@ -42,30 +42,42 @@ namespace galleriet.Model
             {
                 imagesList.Add(images[i].ToString());
             }
-            
+
             // Using "Select" loop my list to match against Regexobject approved extensions.
             imagesList.Select(imageName => ApprovedExtensions.IsMatch(imageName));
             imagesList.TrimExcess();
             imagesList.Sort();
 
-            return imagesList.AsReadOnly(); 
+            return imagesList.AsReadOnly();
 
         }
 
-        public  static bool ImageExist(string name)
+        public bool ImageExist(string name)
         {
-
-
-            throw new NotImplementedException("tom imageexistmetod");
+            // Returns true if my list contains that name.
+            return GetImageNames().Contains(name);
         }
 
         private bool IsValidImage(Image image)
         {
-            throw new NotImplementedException("tom isvalidimagemetod");
+
+            //return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.ApprovedExtensions.Match(image).Guid;
+            return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Gif.Guid ||
+            image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid ||
+            image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
         }
 
         public string SaveImage(Stream stream, string fileName)
         {
+            try
+            {
+                ApprovedExtensions.Match(fileName);
+            }
+            catch (Exception)
+            {
+
+                throw new ArgumentException("Du kan endast spara bilder i format gif|jpg|png");
+            }
             throw new NotImplementedException("saveimagemetod");
         }
     }
