@@ -36,8 +36,15 @@ namespace galleriet.Model
         {
             // Getting files from the path saving them into an array.
             var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
+           
+            //foreach (var image in images)
+            //{
+            //    var image2 = System.Drawing.Image.FromFile(image.FullName);
+            //    var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
+            //    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
+            //}
+            
             List<string> imagesAdressList = new List<string>(50);
-
             for (int i = 0; i < images.Length; i++)
             {
                 imagesAdressList.Add(images[i].ToString());
@@ -54,9 +61,9 @@ namespace galleriet.Model
 
         public bool ImageExist(string name)
         {
-           
+
             //return GetImageNames().Contains(name);
-            return File.Exists(string.Format("{0}/{1}",PhysicalUploadedImagesPath, name));
+            return File.Exists(string.Format("{0}/{1}", PhysicalUploadedImagesPath, name));
         }
 
         private bool IsValidImage(Image image)
@@ -68,16 +75,46 @@ namespace galleriet.Model
 
         public string SaveImage(Stream stream, string fileName)
         {
+            // Check if filename got correct filename, if not try to remove.
+            SantizePath.Replace(fileName, String.Empty);
+
+            
+            if (!ApprovedExtensions.IsMatch(fileName))
+            {
+                throw new ArgumentException("Du kan endast spara bilder i format gif|jpg|png");
+            }
+
+            // If filename exist, do while loop calling "ImageExist(return true/false) and add number in ending. 
+            if (ImageExist(fileName))
+            {
+                var extension = Path.GetExtension(fileName);
+                var imageName = Path.GetFileNameWithoutExtension(fileName);
+
+                int i = 0;
+                do
+                {
+                    fileName = String.Format("{0}{1}{2}", imageName, i, extension);
+                    i++;
+                } while (ImageExist(fileName));
+            }
+
+            // Setting my image/thumbnail as stream type and next line saving it with the path and filename. 
             try
             {
-                ApprovedExtensions.Match(fileName);
+                var image = System.Drawing.Image.FromStream(stream);
+                if (IsValidImage(image))
+                {
+                    image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
+                }
+                var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
+                thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
+
             }
             catch (Exception)
             {
-
-                throw new ArgumentException("Du kan endast spara bilder i format gif|jpg|png");
+                throw new ArgumentException("Ett oväntat undantag inträffade, du har nu fått virus.");
             }
-            throw new NotImplementedException("saveimagemetod");
+            return fileName;
         }
     }
 }
