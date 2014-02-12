@@ -54,6 +54,8 @@ namespace galleriet.Model
 
         public  static bool ImageExist(string name)
         {
+
+
             throw new NotImplementedException("tom imageexistmetod");
         }
 
