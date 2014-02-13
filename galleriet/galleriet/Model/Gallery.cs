@@ -37,14 +37,14 @@ namespace galleriet.Model
             // Getting files from the path saving them into an array.
             var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
 
-            foreach (var image in images)
-            {
-                using (var image2 = System.Drawing.Image.FromFile(image.FullName))
-                using (var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
-                {
-                    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
-                }
-            }
+            //foreach (var image in images)
+            //{
+            //    using (var image2 = System.Drawing.Image.FromFile(image.FullName))
+            //    using (var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
+            //    {
+            //        thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
+            //    }
+            //}
 
             List<string> imagesAdressList = new List<string>();
             for (int i = 0; i < images.Length; i++)
@@ -101,13 +101,17 @@ namespace galleriet.Model
             // Setting my image/thumbnail as stream type and next line saving it with the path and filename. 
             try
             {
-                var image = System.Drawing.Image.FromStream(stream);
-                if (IsValidImage(image))
+                using (var image = System.Drawing.Image.FromStream(stream))
                 {
-                    image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
+                    if (IsValidImage(image))
+                    {
+                        image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
+                    }
+                    using (var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
+                    {
+                        thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
+                    }
                 }
-                var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
-                thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
             }
             catch (Exception)
             {
