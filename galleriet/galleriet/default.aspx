@@ -29,7 +29,7 @@
             </div>
             <%-- Two validators checking a regular expression and not emty filename toward Fileupload control --%>
 
-            <asp:RequiredFieldValidator Visible="false" ID="RequiredFieldValidator1" runat="server" Text="*" ErrorMessage="Välj först bild, sedan tryck sedan på ladda upp." ControlToValidate="Select"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator Visible="false" ID="RequiredFieldValidator1" runat="server" Text="*" ErrorMessage="Välj först bild, sedan tryck sedan på ladda upp." ControlToValidate="DeleteButton"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator Visible="false" ID="RegularExpressionValidator1" runat="server" Text="*" ErrorMessage="Bilden måste vara av typen gif|jpg|png" ControlToValidate="Select" Display="Static" ValidationExpression="^.*\.(gif|jpg|png)$"></asp:RegularExpressionValidator>
             <%-- Collection of errors --%>
             <asp:ValidationSummary ID="ValidationSummary" runat="server" />

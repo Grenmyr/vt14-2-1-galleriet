@@ -37,12 +37,14 @@ namespace galleriet.Model
             // Getting files from the path saving them into an array.
             var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
 
-            //foreach (var image in images)
-            //{
-            //    var image2 = System.Drawing.Image.FromFile(image.FullName);
-            //    var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
-            //    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
-            //}
+            foreach (var image in images)
+            {
+                using (var image2 = System.Drawing.Image.FromFile(image.FullName))
+                using (var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
+                {
+                    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
+                }
+            }
 
             List<string> imagesAdressList = new List<string>();
             for (int i = 0; i < images.Length; i++)
@@ -56,13 +58,11 @@ namespace galleriet.Model
             imagesAdressList.Sort();
 
             return imagesAdressList.AsEnumerable();
-
         }
 
+        // Metod that returns true if file and filepatch match.
         public bool ImageExist(string name)
         {
-
-            //return GetImageNames().Contains(name);
             return File.Exists(string.Format("{0}/{1}", PhysicalUploadedImagesPath, name));
         }
 

@@ -10,12 +10,12 @@ namespace galleriet
 {
     public partial class _default : System.Web.UI.Page
     {
-
+        private Gallery _gallery;
         // Property setting Gallery
         public Gallery gallery
         {
             // Lazy initializasion, if null at left side, create gallery instance, else return the already initialized field.
-            get { return Session["GalleryApp"] as Gallery ?? (Gallery)(Session["GalleryApp"] = new Gallery()); }
+            get { return _gallery ?? (_gallery = new Gallery()); }
 
         }
         // Property to check if any Session MSG
@@ -88,9 +88,11 @@ namespace galleriet
                 {
                     try
                     {
-                        gallery.DeleteImage(FileName);
-                        Message = String.Format("Du har tagit bort{0}", FileName);
-                        Response.Redirect("?name=" + FileName);
+                    
+                            gallery.DeleteImage(FileName);
+                            Message = String.Format("Du har tagit bort{0}", FileName);
+                            Response.Redirect("?name=" + FileName);
+                        
                     }
                     catch (Exception ex)
                     {
