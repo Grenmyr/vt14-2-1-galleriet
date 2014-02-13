@@ -56,6 +56,7 @@ namespace galleriet
         {
             if (IsValid)
             {
+           
                 var filename = Request.QueryString.ToString();
                 gallery.DeleteImage(filename);
             }

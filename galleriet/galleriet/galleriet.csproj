@@ -63,7 +63,6 @@
     <Content Include="default.aspx" />
     <Content Include="error.html" />
     <Content Include="Files\Images\Chrysanthemum.jpg" />
-    <Content Include="Files\Images\Desert.jpg" />
     <Content Include="Files\Images\Hydrangeas.jpg" />
     <Content Include="Files\Images\Jellyfish.jpg" />
     <Content Include="Files\Images\Koala.jpg" />
