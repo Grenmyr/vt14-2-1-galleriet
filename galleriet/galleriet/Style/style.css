@@ -1,2 +1,13 @@
 ﻿body {
+    
+}
+.content {
+    max-width:850px;
+}
+.thumbnails {
+    max-width:800px;
+    overflow-x:auto;
+}
+#image {
+
 }

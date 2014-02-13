@@ -94,6 +94,15 @@ namespace galleriet {
         protected global::System.Web.UI.WebControls.PlaceHolder ButtonPlaceHolder;
         
         /// <summary>
+        /// Select control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload Select;
+        
+        /// <summary>
         /// Upload control.
         /// </summary>
         /// <remarks>
@@ -103,12 +112,12 @@ namespace galleriet {
         protected global::System.Web.UI.WebControls.Button Upload;
         
         /// <summary>
-        /// Select control.
+        /// DeleteButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload Select;
+        protected global::System.Web.UI.WebControls.Button DeleteButton;
     }
 }

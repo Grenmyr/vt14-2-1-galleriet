@@ -15,6 +15,9 @@ namespace galleriet.Model
         private static string PhysicalUploadedImagesPath;
         private static string PhysicalUploadedThumbNailPath;
 
+        private string Delete { get; set; }
+
+
         // Constructor
         static Gallery()
         {
@@ -43,7 +46,7 @@ namespace galleriet.Model
                 var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
                 thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
             }
-            
+
             List<string> imagesAdressList = new List<string>(50);
             for (int i = 0; i < images.Length; i++)
             {
@@ -55,7 +58,7 @@ namespace galleriet.Model
             imagesAdressList.TrimExcess();
             imagesAdressList.Sort();
 
-            return imagesAdressList.AsReadOnly();
+            return imagesAdressList.AsEnumerable();
 
         }
 
@@ -78,7 +81,7 @@ namespace galleriet.Model
             // Check if filename got correct filename, if not try to remove.
             SantizePath.Replace(fileName, String.Empty);
 
-            
+
             if (!ApprovedExtensions.IsMatch(fileName))
             {
                 throw new ArgumentException("Du kan endast spara bilder i format gif|jpg|png");
@@ -109,6 +112,7 @@ namespace galleriet.Model
                 var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
                 thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
 
+
             }
             catch (Exception)
             {
@@ -116,5 +120,14 @@ namespace galleriet.Model
             }
             return fileName;
         }
+        public void DeleteImage(string fileName)
+        {
+            
+            if (ImageExist(fileName))
+            {
+                File.Delete(Path.Combine(PhysicalUploadedImagesPath, fileName));
+            }
+        }
+
     }
 }

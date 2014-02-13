@@ -11,7 +11,7 @@ namespace galleriet
     public partial class _default : System.Web.UI.Page
     {
         private Gallery _gallery;
-        
+
         // Property setting Gallery
         public Gallery gallery
         {
@@ -22,8 +22,9 @@ namespace galleriet
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            // Setting my CurrentImage controls url to the path of the picture in querystring that is selected from my hyperlink control onclick.
             CurrentImage.ImageUrl = "~/Files/Images/" + Request.QueryString;
+            // Setting my CurrentImage controls url to the path of the picture in querystring that is selected from my hyperlink control onclick.
+
         }
 
         public IEnumerable<System.String> Repeater_GetData()
@@ -40,14 +41,23 @@ namespace galleriet
                 // Try/catch that throw customized error from my Gallery.cs file and present them in my validationsummary control.
                 try
                 {
-                    gallery.SaveImage(selectedPic, filename);
+                    var savedfilename = gallery.SaveImage(selectedPic, filename);
                     Literal.Visible = true;
-                    Literal.Text = String.Format("Bilden {0} har laddats upp.", filename);
+                    Literal.Text = String.Format("Bilden {0} har laddats upp.", savedfilename);
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError(String.Empty, ex.Message);
                 }
+            }
+        }
+
+        protected void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (IsValid)
+            {
+                var filename = Request.QueryString.ToString();
+                gallery.DeleteImage(filename);
             }
         }
     }
