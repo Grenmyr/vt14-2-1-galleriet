@@ -15,9 +15,6 @@ namespace galleriet.Model
         private static string PhysicalUploadedImagesPath;
         private static string PhysicalUploadedThumbNailPath;
 
-        private string Delete { get; set; }
-
-
         // Constructor
         static Gallery()
         {
@@ -47,7 +44,7 @@ namespace galleriet.Model
             //    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
             //}
 
-            List<string> imagesAdressList = new List<string>(50);
+            List<string> imagesAdressList = new List<string>();
             for (int i = 0; i < images.Length; i++)
             {
                 imagesAdressList.Add(images[i].ToString());
@@ -69,6 +66,7 @@ namespace galleriet.Model
             return File.Exists(string.Format("{0}/{1}", PhysicalUploadedImagesPath, name));
         }
 
+        // Return true if valid image
         private bool IsValidImage(Image image)
         {
             return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Gif.Guid ||
@@ -100,7 +98,6 @@ namespace galleriet.Model
                     i++;
                 } while (ImageExist(fileName));
             }
-
             // Setting my image/thumbnail as stream type and next line saving it with the path and filename. 
             try
             {
@@ -111,8 +108,6 @@ namespace galleriet.Model
                 }
                 var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
                 thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
-
-
             }
             catch (Exception)
             {

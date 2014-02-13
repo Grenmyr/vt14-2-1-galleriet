@@ -10,9 +10,9 @@
 <body>
     <h1>Galleriet</h1>
     <form id="form1" runat="server" defaultbutton="Upload">
-        
+
         <div class="content">
-               
+
             <%-- Image control --%>
             <div id="image">
                 <asp:Image ID="CurrentImage" runat="server" Width="800" />
@@ -28,9 +28,9 @@
                 </asp:Repeater>
             </div>
             <%-- Two validators checking a regular expression and not emty filename toward Fileupload control --%>
-            <asp:RegularExpressionValidator Visible="false" ID="RegularExpressionValidator1" runat="server" Text="*" ErrorMessage="Bilden måste vara av typen gif|jpg|png" ControlToValidate="Select" Display="Static" ValidationExpression="^.*\.(gif|jpg|png)$"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator Visible="false" ID="RequiredFieldValidator1" runat="server" Text="*" ErrorMessage="Välj först bild, sedan tryck sedan på ladda upp." ControlToValidate="Select"></asp:RequiredFieldValidator>
 
+            <asp:RequiredFieldValidator Visible="false" ID="RequiredFieldValidator1" runat="server" Text="*" ErrorMessage="Välj först bild, sedan tryck sedan på ladda upp." ControlToValidate="Select"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator Visible="false" ID="RegularExpressionValidator1" runat="server" Text="*" ErrorMessage="Bilden måste vara av typen gif|jpg|png" ControlToValidate="Select" Display="Static" ValidationExpression="^.*\.(gif|jpg|png)$"></asp:RegularExpressionValidator>
             <%-- Collection of errors --%>
             <asp:ValidationSummary ID="ValidationSummary" runat="server" />
             <%-- Buttons for "fileUpload" wich is a built in "browse type button" and upload is normal button --%>
@@ -41,7 +41,7 @@
             </asp:PlaceHolder>
 
             <%-- Save Confirmation Message --%>
-                <asp:Literal ID="Literal" runat="server" Visible="false"></asp:Literal>
+            <asp:Literal ID="Literal" runat="server" Visible="false"></asp:Literal>
         </div>
     </form>
 </body>
