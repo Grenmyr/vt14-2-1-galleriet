@@ -40,12 +40,12 @@ namespace galleriet.Model
             // Getting files from the path saving them into an array.
             var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
 
-            foreach (var image in images)
-            {
-                var image2 = System.Drawing.Image.FromFile(image.FullName);
-                var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
-                thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
-            }
+            //foreach (var image in images)
+            //{
+            //    var image2 = System.Drawing.Image.FromFile(image.FullName);
+            //    var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
+            //    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
+            //}
 
             List<string> imagesAdressList = new List<string>(50);
             for (int i = 0; i < images.Length; i++)
@@ -122,10 +122,17 @@ namespace galleriet.Model
         }
         public void DeleteImage(string fileName)
         {
-            
             if (ImageExist(fileName))
             {
-                File.Delete(Path.Combine(PhysicalUploadedImagesPath, fileName));
+                try
+                {
+                    File.Delete(Path.Combine(PhysicalUploadedImagesPath, fileName));
+                    File.Delete(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentException("Ett oväntat undantag inträffade, du har nu fått virus.");
+                }
             }
         }
 
