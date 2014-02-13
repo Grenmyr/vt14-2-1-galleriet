@@ -36,13 +36,13 @@ namespace galleriet.Model
         {
             // Getting files from the path saving them into an array.
             var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
-           
-            //foreach (var image in images)
-            //{
-            //    var image2 = System.Drawing.Image.FromFile(image.FullName);
-            //    var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
-            //    thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
-            //}
+
+            foreach (var image in images)
+            {
+                var image2 = System.Drawing.Image.FromFile(image.FullName);
+                var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
+                thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
+            }
             
             List<string> imagesAdressList = new List<string>(50);
             for (int i = 0; i < images.Length; i++)
