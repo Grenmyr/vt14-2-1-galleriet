@@ -35,8 +35,8 @@ namespace galleriet
         {
             if (IsValid)
             {
-                var selectedPic = FileUpload.FileContent;
-                var filename = FileUpload.FileName;
+                var selectedPic = Select.FileContent;
+                var filename = Select.FileName;
                 // Try/catch that throw customized error from my Gallery.cs file and present them in my validationsummary control.
                 try
                 {
