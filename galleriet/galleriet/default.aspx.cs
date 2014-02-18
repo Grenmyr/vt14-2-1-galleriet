@@ -88,11 +88,9 @@ namespace galleriet
                 {
                     try
                     {
-                    
                             gallery.DeleteImage(FileName);
                             Message = String.Format("Du har tagit bort{0}", FileName);
                             Response.Redirect("?name=" + FileName);
-                        
                     }
                     catch (Exception ex)
                     {

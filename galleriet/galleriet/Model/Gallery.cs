@@ -46,7 +46,7 @@ namespace galleriet.Model
             //    }
             //}
 
-            List<string> imagesAdressList = new List<string>();
+            List<string> imagesAdressList = new List<string>(images.Length);
             for (int i = 0; i < images.Length; i++)
             {
                 imagesAdressList.Add(images[i].ToString());
