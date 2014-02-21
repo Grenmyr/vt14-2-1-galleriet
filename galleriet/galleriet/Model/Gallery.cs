@@ -76,8 +76,9 @@ namespace galleriet.Model
 
         public string SaveImage(Stream stream, string fileName)
         {
+           
             // Check if filename got correct filename, if not try to remove.
-            SantizePath.Replace(fileName, String.Empty);
+            fileName =SantizePath.Replace(fileName, String.Empty);
 
 
             if (!ApprovedExtensions.IsMatch(fileName))
